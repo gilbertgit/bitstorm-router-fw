@@ -360,203 +360,203 @@ END GROUP
                 0x00000212       0x3e ./wan/wan_config.o
                 0x00000212                wan_get_device_address
  .text.wan_config_network
-                0x00000250       0x64 ./wan/wan_config.o
+                0x00000250       0x66 ./wan/wan_config.o
                 0x00000250                wan_config_network
  .text.config_mac_resp
-                0x000002b4       0x3a ./wan/wan_config.o
-                0x000002b4                config_mac_resp
+                0x000002b6       0x3a ./wan/wan_config.o
+                0x000002b6                config_mac_resp
  .text.wan_config_received
-                0x000002ee       0x2a ./wan/wan_config.o
-                0x000002ee                wan_config_received
+                0x000002f0       0x2a ./wan/wan_config.o
+                0x000002f0                wan_config_received
  .text.config_ntw_resp
-                0x00000318        0x8 ./wan/wan_config.o
-                0x00000318                config_ntw_resp
+                0x0000031a        0x8 ./wan/wan_config.o
+                0x0000031a                config_ntw_resp
  .text.wan_config_tick
-                0x00000320       0x2a ./wan/wan_config.o
-                0x00000320                wan_config_tick
+                0x00000322       0x2a ./wan/wan_config.o
+                0x00000322                wan_config_tick
  .text.wan_driver_init
-                0x0000034a       0x26 ./wan/wan_driver.o
-                0x0000034a                wan_driver_init
+                0x0000034c       0x26 ./wan/wan_driver.o
+                0x0000034c                wan_driver_init
  .text.wan_driver_tick
-                0x00000370        0x4 ./wan/wan_driver.o
-                0x00000370                wan_driver_tick
+                0x00000372        0x4 ./wan/wan_driver.o
+                0x00000372                wan_driver_tick
  .text.clock_init
-                0x00000374       0x18 ./util/clock.o
-                0x00000374                clock_init
+                0x00000376       0x18 ./util/clock.o
+                0x00000376                clock_init
  .text.clock_time
-                0x0000038c       0x12 ./util/clock.o
-                0x0000038c                clock_time
+                0x0000038e       0x12 ./util/clock.o
+                0x0000038e                clock_time
  .text.delay_millis
-                0x0000039e       0x3c ./util/clock.o
-                0x0000039e                delay_millis
+                0x000003a0       0x3c ./util/clock.o
+                0x000003a0                delay_millis
  .text.__vector_16
-                0x000003da       0x4a ./util/clock.o
-                0x000003da                __vector_16
+                0x000003dc       0x4a ./util/clock.o
+                0x000003dc                __vector_16
  .text.isr_tick
-                0x00000424       0x28 ./util/clock.o
-                0x00000424                isr_tick
+                0x00000426       0x28 ./util/clock.o
+                0x00000426                isr_tick
  .text.config_init
-                0x0000044c       0x3e ./util/config.o
-                0x0000044c                config_init
+                0x0000044e       0x3e ./util/config.o
+                0x0000044e                config_init
  .text.load_config
-                0x0000048a        0x2 ./util/config.o
-                0x0000048a                load_config
- .text.write_config
                 0x0000048c        0x2 ./util/config.o
-                0x0000048c                write_config
+                0x0000048c                load_config
+ .text.write_config
+                0x0000048e        0x2 ./util/config.o
+                0x0000048e                write_config
  .text._debug_init
-                0x0000048e       0x38 ./util/log.o
-                0x0000048e                _debug_init
+                0x00000490       0x38 ./util/log.o
+                0x00000490                _debug_init
  .text.USART_RX_vect
-                0x000004c6       0x5e ./util/log.o
-                0x000004c6                USART_RX_vect
+                0x000004c8       0x5e ./util/log.o
+                0x000004c8                USART_RX_vect
  .text._debug_set_rx_cb
-                0x00000524        0xa ./util/log.o
-                0x00000524                _debug_set_rx_cb
+                0x00000526        0xa ./util/log.o
+                0x00000526                _debug_set_rx_cb
  .text._debug_set_out_cb
-                0x0000052e        0xa ./util/log.o
-                0x0000052e                _debug_set_out_cb
+                0x00000530        0xa ./util/log.o
+                0x00000530                _debug_set_out_cb
  .text._debug_stringz
-                0x00000538       0x18 ./util/log.o
-                0x00000538                _debug_stringz
+                0x0000053a       0x18 ./util/log.o
+                0x0000053a                _debug_stringz
  .text._debug_byte
-                0x00000550        0xe ./util/log.o
-                0x00000550                _debug_byte
+                0x00000552        0xe ./util/log.o
+                0x00000552                _debug_byte
  .text._debug_putch
-                0x0000055e       0x20 ./util/log.o
-                0x0000055e                _debug_putch
+                0x00000560       0x20 ./util/log.o
+                0x00000560                _debug_putch
  .text._debug_byte_as_hex
-                0x0000057e       0x34 ./util/log.o
-                0x0000057e                _debug_byte_as_hex
+                0x00000580       0x34 ./util/log.o
+                0x00000580                _debug_byte_as_hex
  .text._debug_hex_dump
-                0x000005b2       0x44 ./util/log.o
-                0x000005b2                _debug_hex_dump
+                0x000005b4       0x44 ./util/log.o
+                0x000005b4                _debug_hex_dump
  .text._debug_log
-                0x000005f6       0x6c ./util/log.o
-                0x000005f6                _debug_log
+                0x000005f8       0x6c ./util/log.o
+                0x000005f8                _debug_log
  .text.debug_test
-                0x00000662       0x70 ./util/log.o
-                0x00000662                debug_test
+                0x00000664       0x70 ./util/log.o
+                0x00000664                debug_test
  .text._btle_set_rx_cb
-                0x000006d2        0xa ./usart/usart_btle.o
-                0x000006d2                _btle_set_rx_cb
+                0x000006d4        0xa ./usart/usart_btle.o
+                0x000006d4                _btle_set_rx_cb
  .text.btle_usart_init
-                0x000006dc       0x26 ./usart/usart_btle.o
-                0x000006dc                btle_usart_init
+                0x000006de       0x26 ./usart/usart_btle.o
+                0x000006de                btle_usart_init
  .text.btle_usart_init_cb
-                0x00000702       0x2e ./usart/usart_btle.o
-                0x00000702                btle_usart_init_cb
+                0x00000704       0x2e ./usart/usart_btle.o
+                0x00000704                btle_usart_init_cb
  .text.btle_usart_put_char
-                0x00000730       0x30 ./usart/usart_btle.o
-                0x00000730                btle_usart_put_char
+                0x00000732       0x30 ./usart/usart_btle.o
+                0x00000732                btle_usart_put_char
  .text.btle_usart_clear_buffer
-                0x00000760       0x16 ./usart/usart_btle.o
-                0x00000760                btle_usart_clear_buffer
+                0x00000762       0x16 ./usart/usart_btle.o
+                0x00000762                btle_usart_clear_buffer
  .text.btle_usart_data_available
-                0x00000776        0xc ./usart/usart_btle.o
-                0x00000776                btle_usart_data_available
+                0x00000778        0xc ./usart/usart_btle.o
+                0x00000778                btle_usart_data_available
  .text.btle_usart_data_read
-                0x00000782       0x32 ./usart/usart_btle.o
-                0x00000782                btle_usart_data_read
+                0x00000784       0x32 ./usart/usart_btle.o
+                0x00000784                btle_usart_data_read
  .text.btle_usart_transmit
-                0x000007b4        0xe ./usart/usart_btle.o
-                0x000007b4                btle_usart_transmit
+                0x000007b6        0xe ./usart/usart_btle.o
+                0x000007b6                btle_usart_transmit
  .text.btle_usart_transmit_bytes
-                0x000007c2       0x20 ./usart/usart_btle.o
-                0x000007c2                btle_usart_transmit_bytes
+                0x000007c4       0x20 ./usart/usart_btle.o
+                0x000007c4                btle_usart_transmit_bytes
  .text.btle_usart_transmit_string
-                0x000007e2       0x18 ./usart/usart_btle.o
-                0x000007e2                btle_usart_transmit_string
+                0x000007e4       0x18 ./usart/usart_btle.o
+                0x000007e4                btle_usart_transmit_string
  .text.__vector_28
-                0x000007fa       0x6a ./usart/usart_btle.o
-                0x000007fa                __vector_28
+                0x000007fc       0x6a ./usart/usart_btle.o
+                0x000007fc                __vector_28
  .text.wan_usart_init
-                0x00000864       0x26 ./usart/usart_wan.o
-                0x00000864                wan_usart_init
+                0x00000866       0x26 ./usart/usart_wan.o
+                0x00000866                wan_usart_init
  .text.wan_usart_put_char
-                0x0000088a       0x30 ./usart/usart_wan.o
-                0x0000088a                wan_usart_put_char
+                0x0000088c       0x30 ./usart/usart_wan.o
+                0x0000088c                wan_usart_put_char
  .text.wan_usart_clear_buffer
-                0x000008ba       0x16 ./usart/usart_wan.o
-                0x000008ba                wan_usart_clear_buffer
+                0x000008bc       0x16 ./usart/usart_wan.o
+                0x000008bc                wan_usart_clear_buffer
  .text.wan_usart_data_available
-                0x000008d0        0xc ./usart/usart_wan.o
-                0x000008d0                wan_usart_data_available
+                0x000008d2        0xc ./usart/usart_wan.o
+                0x000008d2                wan_usart_data_available
  .text.wan_usart_data_read
-                0x000008dc       0x32 ./usart/usart_wan.o
-                0x000008dc                wan_usart_data_read
+                0x000008de       0x32 ./usart/usart_wan.o
+                0x000008de                wan_usart_data_read
  .text.wan_usart_transmit
-                0x0000090e        0xe ./usart/usart_wan.o
-                0x0000090e                wan_usart_transmit
+                0x00000910        0xe ./usart/usart_wan.o
+                0x00000910                wan_usart_transmit
  .text.wan_usart_transmit_bytes
-                0x0000091c       0x20 ./usart/usart_wan.o
-                0x0000091c                wan_usart_transmit_bytes
+                0x0000091e       0x20 ./usart/usart_wan.o
+                0x0000091e                wan_usart_transmit_bytes
  .text.wan_usart_transmit_string
-                0x0000093c       0x18 ./usart/usart_wan.o
-                0x0000093c                wan_usart_transmit_string
+                0x0000093e       0x18 ./usart/usart_wan.o
+                0x0000093e                wan_usart_transmit_string
  .text.__vector_20
-                0x00000954       0x54 ./usart/usart_wan.o
-                0x00000954                __vector_20
+                0x00000956       0x54 ./usart/usart_wan.o
+                0x00000956                __vector_20
  .text.ramdisk_init
-                0x000009a8       0x34 ./ramdisk/ramdisk.o
-                0x000009a8                ramdisk_init
+                0x000009aa       0x34 ./ramdisk/ramdisk.o
+                0x000009aa                ramdisk_init
  .text.ramdisk_write
-                0x000009dc      0x100 ./ramdisk/ramdisk.o
-                0x000009dc                ramdisk_write
+                0x000009de      0x100 ./ramdisk/ramdisk.o
+                0x000009de                ramdisk_write
  .text.ramdisk_erase
-                0x00000adc      0x138 ./ramdisk/ramdisk.o
-                0x00000adc                ramdisk_erase
+                0x00000ade      0x138 ./ramdisk/ramdisk.o
+                0x00000ade                ramdisk_erase
  .text.ramdisk_find
-                0x00000c14       0x7e ./ramdisk/ramdisk.o
-                0x00000c14                ramdisk_find
+                0x00000c16       0x7e ./ramdisk/ramdisk.o
+                0x00000c16                ramdisk_find
  .text.ramdisk_next
-                0x00000c92       0x24 ./ramdisk/ramdisk.o
-                0x00000c92                ramdisk_next
+                0x00000c94       0x24 ./ramdisk/ramdisk.o
+                0x00000c94                ramdisk_next
  .text.queue_reset
-                0x00000cb6       0x18 ./queue/queue.o
-                0x00000cb6                queue_reset
+                0x00000cb8       0x18 ./queue/queue.o
+                0x00000cb8                queue_reset
  .text.queue_init
-                0x00000cce        0xa ./queue/queue.o
-                0x00000cce                queue_init
+                0x00000cd0        0xa ./queue/queue.o
+                0x00000cd0                queue_init
  .text.queue_enqueue
-                0x00000cd8      0x124 ./queue/queue.o
-                0x00000cd8                queue_enqueue
+                0x00000cda      0x124 ./queue/queue.o
+                0x00000cda                queue_enqueue
  .text.queue_dequeue
-                0x00000dfc       0xce ./queue/queue.o
-                0x00000dfc                queue_dequeue
+                0x00000dfe       0xce ./queue/queue.o
+                0x00000dfe                queue_dequeue
  .text.queue_find
-                0x00000eca       0x6a ./queue/queue.o
-                0x00000eca                queue_find
+                0x00000ecc       0x6a ./queue/queue.o
+                0x00000ecc                queue_find
  .text.queue_remove
-                0x00000f34       0xa0 ./queue/queue.o
-                0x00000f34                queue_remove
+                0x00000f36       0xa0 ./queue/queue.o
+                0x00000f36                queue_remove
  .text.queue_peek_length
-                0x00000fd4       0x20 ./queue/queue.o
-                0x00000fd4                queue_peek_length
+                0x00000fd6       0x20 ./queue/queue.o
+                0x00000fd6                queue_peek_length
  .text.queue_clear
-                0x00000ff4       0x32 ./queue/queue.o
-                0x00000ff4                queue_clear
+                0x00000ff6       0x32 ./queue/queue.o
+                0x00000ff6                queue_clear
  .text.eeprom_read
-                0x00001026        0x4 ./eeprom/eeprom.o
-                0x00001026                eeprom_read
+                0x00001028        0x4 ./eeprom/eeprom.o
+                0x00001028                eeprom_read
  .text.eeprom_write
-                0x0000102a        0x4 ./eeprom/eeprom.o
-                0x0000102a                eeprom_write
+                0x0000102c        0x4 ./eeprom/eeprom.o
+                0x0000102c                eeprom_write
  .text.btle_set_cts
-                0x0000102e        0x4 ./btle/btle.o
-                0x0000102e                btle_set_cts
+                0x00001030        0x4 ./btle/btle.o
+                0x00001030                btle_set_cts
  .text.btle_init
-                0x00001032        0xc ./btle/btle.o
-                0x00001032                btle_init
+                0x00001034        0xc ./btle/btle.o
+                0x00001034                btle_init
  .text.btle_get_rts
-                0x0000103e        0x6 ./btle/btle.o
-                0x0000103e                btle_get_rts
+                0x00001040        0x6 ./btle/btle.o
+                0x00001040                btle_get_rts
  .text.build_app_msg
-                0x00001044       0xcc ./btle/btle.o
-                0x00001044                build_app_msg
+                0x00001046       0xcc ./btle/btle.o
+                0x00001046                build_app_msg
  .text.btle_tick
-                0x00001110       0xda ./btle/btle.o
-                0x00001110                btle_tick
+                0x00001112       0xd8 ./btle/btle.o
+                0x00001112                btle_tick
  .text.btle_enqueue
                 0x000011ea        0xe ./btle/btle.o
                 0x000011ea                btle_enqueue

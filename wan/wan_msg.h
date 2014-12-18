@@ -27,6 +27,7 @@ typedef struct
 
 typedef struct
 {
+	uint8_t command;
 	uint16_t pan_id;
 	uint16_t short_id;
 	uint8_t channel;

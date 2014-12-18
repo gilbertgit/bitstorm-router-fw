@@ -50,23 +50,17 @@ void wan_get_device_address()
 
 void wan_config_network()
 {
-	//wan_usart_transmit('X');
-	cmd_header_t cmd_header;
 	cmd_config_ntw_t config_ntw;
 
+	config_ntw.command = CMD_CONFIG_NETWORK;
 	config_ntw.pan_id = 0x1973;
 	config_ntw.short_id = shared.mac & 0x0000FFFF;
 	config_ntw.channel = 0x16;
 
 	uint8_t frame[10];
-	frame[0] = sizeof(cmd_header) + sizeof(config_ntw) + 1;
-	cmd_header.command = CMD_CONFIG_NETWORK;
+	frame[0] = sizeof(config_ntw) + 1; // size of message
+
 	int frame_index = 1;
-	// header
-	for (int i = 0; i < sizeof(cmd_header); i++)
-	{
-		frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
-	}
 	//config
 	for (int i = 0; i < sizeof(config_ntw); i++)
 	{
