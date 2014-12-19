@@ -74,8 +74,8 @@ void btle_tick()
 {
 	btle_driver_tick();
 	// check to see if we have a new message
-	btle_msg_t *msg = ramdisk_next(NULL);
-	if (msg != NULL)
+	btle_msg_t *msg = ramdisk_next(NULL );
+	if (msg != NULL )
 	{
 		app_msg_t app_msg;
 		cmd_send_header_t cmd_header;
@@ -85,31 +85,31 @@ void btle_tick()
 
 		// TODO: Handle Messages
 		// push out the lw-mesh radio
-//		if (!(PINB & (1 << PB0)))
-//		{
+		//if (!(PINB & (1 << PB0)))
+		//{
 
-		frame[0] = sizeof(cmd_header) + sizeof(app_msg) + 1;
-		cmd_header.command = CMD_SEND;
-		cmd_header.pan_id = 0x1973;
-		cmd_header.short_id = 0x0000;
-		cmd_header.message_length = sizeof(app_msg);
+			frame[0] = sizeof(cmd_header) + sizeof(app_msg) + 1;
+			cmd_header.command = CMD_SEND;
+			cmd_header.pan_id = 0x1973;
+			cmd_header.short_id = 0x0000;
+			cmd_header.message_length = sizeof(app_msg);
 
-		int frame_index = 1;
-		// header
-		for (int i = 0; i < sizeof(cmd_header); i++)
-		{
-			frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
-		}
-		// message
-		for (int i = 0; i < sizeof(app_msg_t); i++)
-		{
-			frame[frame_index++] = ((uint8_t *) (&app_msg))[i];
-		}
-		// checksum
-		frame[frame_index++] = 0xFF;
+			int frame_index = 1;
+			// header
+			for (int i = 0; i < sizeof(cmd_header); i++)
+			{
+				frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
+			}
+			// message
+			for (int i = 0; i < sizeof(app_msg_t); i++)
+			{
+				frame[frame_index++] = ((uint8_t *) (&app_msg))[i];
+			}
+			// checksum
+			frame[frame_index++] = 0xFF;
 
-		wan_usart_transmit_bytes((char*) frame, frame_index);
-		PORTD ^= _BV(PD7);
+			wan_usart_transmit_bytes((char*) frame, frame_index);
+			PORTD ^= _BV(PD7);
 		//}
 		// Dequeue the message
 		ramdisk_erase(*msg);
