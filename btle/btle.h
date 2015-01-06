@@ -25,6 +25,7 @@ enum btle_parse_result {
 
 
 extern queue_t btle_queue;
+extern queue_t packet_queue;
 
 void btle_init();
 void btle_tick();

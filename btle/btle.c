@@ -17,6 +17,7 @@
 #include "btle.h"
 #include "btle_msg.h"
 #include "btle_driver.h"
+#include "../util/clock.h"
 #include "../usart/usart_wan.h"
 #include "../wan/wan_msg.h"
 #include "../ramdisk/ramdisk.h"
@@ -24,6 +25,7 @@
 
 // queue management
 queue_t btle_queue;
+queue_t packet_queue;
 
 void btle_init()
 {
@@ -52,8 +54,8 @@ uint8_t btle_get_rts()
 void build_app_msg(btle_msg_t *btle_msg, app_msg_t *msg)
 {
 
-	msg->messageType = 1;
-	msg->nodeType = 1;
+	msg->messageType = 0x01;
+	msg->nodeType = 0x01;
 	msg->extAddr = btle_msg->mac;
 	msg->shortAddr = shared.mac & 0x0000FFFF;
 	msg->routerAddr = shared.mac;
@@ -73,22 +75,34 @@ void build_app_msg(btle_msg_t *btle_msg, app_msg_t *msg)
 void btle_tick()
 {
 	btle_driver_tick();
+	ramdisk_clean_tick();
+
 	// check to see if we have a new message
-	btle_msg_t *msg = ramdisk_next(NULL );
-	if (msg != NULL )
+	if ((PINB & (1 << PB0)))
 	{
-		app_msg_t app_msg;
-		cmd_send_header_t cmd_header;
-		uint8_t frame[80];
+		queue_header_t *qh;
+		qh = packet_queue.head;
 
-		build_app_msg(msg, &app_msg);
+		btle_msg_t *msg = (btle_msg_t *) QUEUE_DATA(qh);
 
-		// TODO: Handle Messages
-		// push out the lw-mesh radio
-		//if (!(PINB & (1 << PB0)))
-		//{
+		if (packet_queue.count > 0)
+		{
+			app_msg_t app_msg;
+			cmd_send_header_t cmd_header;
+			uint8_t frame[80];
+
+			build_app_msg(msg, &app_msg);
+
+			// TODO: Handle Messages
+			// push out the lw-mesh radio
 
 			frame[0] = sizeof(cmd_header) + sizeof(app_msg) + 1;
+
+			if (msg->type == MSG_TYPE_IN_PROX)
+				app_msg.messageType = CMD_IN_PROX;
+			else if (msg->type == MSG_TYPE_OUT_PROX)
+				app_msg.messageType = CMD_OUT_PROX;
+
 			cmd_header.command = CMD_SEND;
 			cmd_header.pan_id = 0x1973;
 			cmd_header.short_id = 0x0000;
@@ -110,10 +124,10 @@ void btle_tick()
 
 			wan_usart_transmit_bytes((char*) frame, frame_index);
 			PORTD ^= _BV(PD7);
-		//}
-		// Dequeue the message
-		ramdisk_erase(*msg);
 
+			// Dequeue the message
+			queue_remove(&packet_queue, (queue_header_t*) msg);
+		}
 	}
 }
 
