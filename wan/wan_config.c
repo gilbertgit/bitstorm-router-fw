@@ -99,6 +99,11 @@ void config_ntw_resp(config_ntw_resp_t * resp)
 	state = FINISHED;
 }
 
+void no_ack_status_resp(no_ack_status_resp_t * resp)
+{
+	state = FINISHED;
+}
+
 bool wan_config_tick()
 {
 	switch (state)

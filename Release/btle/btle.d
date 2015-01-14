@@ -3,7 +3,8 @@ btle/btle.d: ../btle/btle.c ../btle/../util/defines.h \
  ../btle/btle_msg.h ../btle/../sys/sysTypes.h ../btle/btle_driver.h \
  ../btle/../util/clock.h ../btle/../usart/usart_wan.h \
  ../btle/../wan/wan_msg.h ../btle/../ramdisk/ramdisk.h \
- ../btle/../ramdisk/../btle/btle_msg.h ../btle/../shared.h
+ ../btle/../ramdisk/../btle/btle_msg.h ../btle/../shared.h \
+ ../btle/../queue/circular_queue.h
 
 ../btle/../util/defines.h:
 
@@ -30,3 +31,5 @@ btle/btle.d: ../btle/btle.c ../btle/../util/defines.h \
 ../btle/../ramdisk/../btle/btle_msg.h:
 
 ../btle/../shared.h:
+
+../btle/../queue/circular_queue.h:

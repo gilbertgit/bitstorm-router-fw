@@ -86,6 +86,12 @@
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.release.1787446510" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.release">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.1770486800" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level" value="de.innot.avreclipse.compiler.option.debug.level.none" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.655510030" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.size" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.compiler.option.def.1005595832" name="Define Syms (-D)" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="ZB_ACK"/>
+								</option>
+								<option id="de.innot.avreclipse.compiler.option.undef.1357193014" name="Undefine Syms (-U)" superClass="de.innot.avreclipse.compiler.option.undef" valueType="undefDefinedSymbols">
+									<listOptionValue builtIn="false" value="BYPASS_MODE"/>
+								</option>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.592953032" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.release.1857962990" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.release">

@@ -22,4 +22,11 @@ typedef struct config_ntw_resp_t
 
 } config_ntw_resp_t;
 
+typedef struct no_ack_status_resp_t
+{
+	uint8_t request_type;
+	uint8_t resp;
+
+} no_ack_status_resp_t;
+
 #endif /* WAN_RECIEVED_TYPES_H_ */

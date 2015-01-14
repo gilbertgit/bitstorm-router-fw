@@ -21,6 +21,7 @@
 #include "btle_msg.h"
 #include "../usart/usart_wan.h"
 #include "../ramdisk/ramdisk.h"
+#include "../queue/circular_queue.h"
 
 char HEX_DIGITS[] = "0123456789abcdef";
 
@@ -68,6 +69,9 @@ void btle_driver_tick()
 				// TODO: handle the message
 				btle_msg_t msg = btle_handle_le_packet(ptr);
 
+#ifdef BYPASS_MODE
+				enqueue_packet(MSG_TYPE_NORM, &msg);
+#else
 				if (msg.mac != 0)
 				{
 					btle_msg_t *temp = ramdisk_find(msg.mac);
@@ -101,6 +105,7 @@ void btle_driver_tick()
 
 					}
 				}
+#endif
 			}
 		}
 	}
@@ -109,7 +114,11 @@ void btle_driver_tick()
 void enqueue_packet(uint8_t msg_type, btle_msg_t *msg)
 {
 	msg->type = msg_type;
-	queue_enqueue(&packet_queue, msg, sizeof(btle_msg_t));
+	//queue_enqueue(&packet_queue, msg, sizeof(btle_msg_t));
+	for(int i = 0; i < sizeof(btle_msg_t); i++)
+	{
+		circular_queue_put_char(((uint8_t *) msg)[i]);
+	}
 }
 
 void ramdisk_clean_tick()
