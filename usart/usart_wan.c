@@ -110,6 +110,4 @@ ISR(WAN_ISR_VECTOR)
 	//if (btle_rx_cb != 0) btle_rx_cb(data);
 	wan_usart_put_char(data);
 
-//		//PORTD ^= _BV(PD7);
-
 }

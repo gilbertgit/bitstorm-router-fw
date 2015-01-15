@@ -130,7 +130,6 @@ ISR(BTLE_ISR_VECTOR)
 	char data = UDR1;
 	//if (btle_rx_cb != 0) btle_rx_cb(data);
 	btle_usart_put_char(data);
-	//PORTD ^= _BV(PD7);
 
 	// debug callback to main program
 	if (btle_rx_cb != 0)

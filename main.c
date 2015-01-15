@@ -50,7 +50,9 @@ void terminal_in_cb(uint8_t c)
 void main()
 {
 	DDRD |= _BV(PD6); // data direction bit
-	DDRD |= _BV(PD7); // green (D2)
+	DDRD |= _BV(PD7); // green (D2) output
+
+	PORTD |= _BV(PD7); // set led green off
 
 	DDRB &= _BV(PB0); // WAN_INT_01
 

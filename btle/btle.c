@@ -81,70 +81,72 @@ void btle_tick()
 	ramdisk_clean_tick();
 #endif
 
-	// check to see if we have a new message
+	// check to see if we can send
 	if ((PINB & (1 << PB0)))
 	{
-		if(circular_queue_data_available())
+		PORTD |= _BV(PD7);
+
+		if (circular_queue_data_available())
 		{
-		//queue_header_t *qh;
-		//qh = packet_queue.head;
+			//queue_header_t *qh;
+			//qh = packet_queue.head;
 
-		//btle_msg_t *msg = (btle_msg_t *) QUEUE_DATA(qh);
-		btle_msg_t *msg;
-		uint8_t temp[sizeof(btle_msg_t)];
-		for(int i = 0; i < sizeof(btle_msg_t); i++)
-		{
-			temp[i] = circular_queue_data_read();
-		}
-		msg = (btle_msg_t *) temp;
-		if (msg != NULL)
-		{
-			app_msg_t app_msg;
-			cmd_send_header_t cmd_header;
-			uint8_t frame[80];
+			//btle_msg_t *msg = (btle_msg_t *) QUEUE_DATA(qh);
+			btle_msg_t *msg;
+			uint8_t temp[sizeof(btle_msg_t)];
+			for (int i = 0; i < sizeof(btle_msg_t); i++)
+			{
+				temp[i] = circular_queue_data_read();
+			}
+			msg = (btle_msg_t *) temp;
+			if (msg != NULL )
+			{
+				app_msg_t app_msg;
+				cmd_send_header_t cmd_header;
+				uint8_t frame[80];
 
-			build_app_msg(msg, &app_msg);
+				build_app_msg(msg, &app_msg);
 
-			// TODO: Handle Messages
-			// push out the lw-mesh radio
+				// TODO: Handle Messages
+				// push out the lw-mesh radio
 
-			frame[0] = sizeof(cmd_header) + sizeof(app_msg) + 1;
+				frame[0] = sizeof(cmd_header) + sizeof(app_msg) + 1;
 
-			if (msg->type == MSG_TYPE_IN_PROX)
-				app_msg.messageType = CMD_IN_PROX;
-			else if (msg->type == MSG_TYPE_OUT_PROX)
-				app_msg.messageType = CMD_OUT_PROX;
+				if (msg->type == MSG_TYPE_IN_PROX)
+					app_msg.messageType = CMD_IN_PROX;
+				else if (msg->type == MSG_TYPE_OUT_PROX)
+					app_msg.messageType = CMD_OUT_PROX;
 
 #ifdef ZB_ACK
-			cmd_header.command = CMD_ACK_SEND;
+				cmd_header.command = CMD_ACK_SEND;
 #else
-			cmd_header.command = CMD_SEND;
+				cmd_header.command = CMD_SEND;
 #endif
-			cmd_header.pan_id = 0x1973;
-			cmd_header.short_id = 0x0000;
-			cmd_header.message_length = sizeof(app_msg);
+				cmd_header.pan_id = 0x1973;
+				cmd_header.short_id = 0x0000;
+				cmd_header.message_length = sizeof(app_msg);
 
-			int frame_index = 1;
-			// header
-			for (int i = 0; i < sizeof(cmd_header); i++)
-			{
-				frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
+				int frame_index = 1;
+				// header
+				for (int i = 0; i < sizeof(cmd_header); i++)
+				{
+					frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
+				}
+				// message
+				for (int i = 0; i < sizeof(app_msg_t); i++)
+				{
+					frame[frame_index++] = ((uint8_t *) (&app_msg))[i];
+				}
+				// checksum
+				frame[frame_index++] = 0xFF;
+
+				PORTD &= ~_BV(PD7);
+				wan_usart_transmit_bytes((char*) frame, frame_index);
+
+				// Dequeue the message
+				//queue_remove(&packet_queue, (queue_header_t*) msg);
 			}
-			// message
-			for (int i = 0; i < sizeof(app_msg_t); i++)
-			{
-				frame[frame_index++] = ((uint8_t *) (&app_msg))[i];
-			}
-			// checksum
-			frame[frame_index++] = 0xFF;
-
-			wan_usart_transmit_bytes((char*) frame, frame_index);
-			PORTD ^= _BV(PD7);
-
-			// Dequeue the message
-			//queue_remove(&packet_queue, (queue_header_t*) msg);
 		}
-	}
 	}
 }
 
