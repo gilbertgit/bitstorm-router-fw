@@ -96,7 +96,6 @@ static void init_lines()
 //static uint8_t parse_data(char *token, char **out)
 //{
 //	uint8_t *ptr = NULL;
-//	// TODO: review warning
 //	if ((ptr == strstr(wan_lines, token)))
 //	{
 //		if (out != NULL )

@@ -66,7 +66,6 @@ void btle_driver_tick()
 
 			if (parse_data((const char*) BTLE_TKSTART, &ptr) == BTLE_TKFOUND)
 			{
-				// TODO: handle the message
 				btle_msg_t msg = btle_handle_le_packet(ptr);
 
 #ifdef BYPASS_MODE
