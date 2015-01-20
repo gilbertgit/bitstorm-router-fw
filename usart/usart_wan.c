@@ -10,6 +10,7 @@
 //#define BAUD 57600
 //#define BAUD 115200
 
+#include <string.h>
 #include <avr/io.h>
 #include <util/setbaud.h>
 #include <avr/interrupt.h>
@@ -106,7 +107,7 @@ void wan_usart_transmit_string(char * data)
 
 ISR(WAN_ISR_VECTOR)
 {
-	char * data = UDR0;
+	unsigned char data = UDR0;
 	//if (btle_rx_cb != 0) btle_rx_cb(data);
 	wan_usart_put_char(data);
 

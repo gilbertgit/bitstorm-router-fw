@@ -33,7 +33,7 @@ int wan_line_index = 0;
 
 static void init_buffer();
 static void init_lines();
-static bool handle_data();
+//static bool handle_data();
 //static uint8_t parse_data(char *token, char **out);
 
 //static uint8_t wan_parse_nybble(char c);
@@ -65,33 +65,33 @@ static void init_lines()
 	memset(wan_lines, '\0', sizeof(wan_lines));
 }
 
-bool handle_data()
-{
-
-	char c = wan_usart_data_read();
-
-	// ignore null terminated strings
-	if (c == '\0')
-		return false;
-	// prevent buffer overrun
-	if (wan_line_index >= WAN_MAX_CHARS)
-		return false;
-
-	// store character in btle_line_buffer
-	wan_line_buffer[wan_line_index] = c;
-	wan_line_index++;
-
-	// check for end of line
-	if (c == WAN_TKEND)
-	{
-		// copy new message into buffer
-		strcpy(wan_lines, wan_line_buffer);
-		init_buffer();
-		return true;
-	}
-
-	return false;
-}
+//bool handle_data()
+//{
+//
+//	char c = wan_usart_data_read();
+//
+//	// ignore null terminated strings
+//	if (c == '\0')
+//		return false;
+//	// prevent buffer overrun
+//	if (wan_line_index >= WAN_MAX_CHARS)
+//		return false;
+//
+//	// store character in btle_line_buffer
+//	wan_line_buffer[wan_line_index] = c;
+//	wan_line_index++;
+//
+//	// check for end of line
+//	if (c == WAN_TKEND)
+//	{
+//		// copy new message into buffer
+//		strcpy(wan_lines, wan_line_buffer);
+//		init_buffer();
+//		return true;
+//	}
+//
+//	return false;
+//}
 
 //static uint8_t parse_data(char *token, char **out)
 //{

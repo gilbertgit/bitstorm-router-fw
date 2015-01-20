@@ -57,6 +57,8 @@ uint8_t wan_get_rts()
 
 void wan_tick()
 {
+	//REVIEW: Implement state machine with WAITING_FOR_DATA, WAITING_FOR_RFBUSY, WAITING_FOR_RFREADY
+
 	if (!config_finished)
 		config_finished = wan_config_tick();
 

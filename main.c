@@ -7,8 +7,6 @@
  *      Author: jcobb
  */
 
-#define F_CPU		8000000
-
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <util/delay.h>
@@ -18,7 +16,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "util/clock.h"
-#include "util/log.h"
 #include "util/config.h"
 #include "queue/queue.h"
 #include "btle/btle.h"
@@ -47,7 +44,7 @@ void terminal_in_cb(uint8_t c)
 
 }
 
-void main()
+int main()
 {
 	DDRD |= _BV(PD6); // data direction bit
 	DDRD |= _BV(PD7); // green (D2) output

@@ -17,10 +17,10 @@ typedef struct {
 	uint64_t mac;
 	uint16_t batt;
 	uint16_t temp;
-	struct btle_msg_t *next;
+	void *next;
 	uint32_t last_sent;
-		uint8_t count;
-		uint8_t type;
+	uint8_t count;
+	uint8_t type;
 
 } btle_msg_t;
 
