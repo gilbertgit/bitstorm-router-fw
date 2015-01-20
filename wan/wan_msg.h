@@ -9,7 +9,7 @@
 #define WAN_MSG_H_
 
 #define MSG_SIZE				64 // index(1) + origin(11) + 1 + content(50) + 1 + type(1) + state(1) = 66
-
+#include "../sys/sysTypes.h"
 
 typedef struct
 {
@@ -43,6 +43,28 @@ enum
 	CMD_OUT_PROX = 0x06
 
 };
+
+typedef struct PACK app_msg_t {
+	uint8_t messageType;
+	uint8_t nodeType;
+	uint64_t extAddr;
+	uint16_t shortAddr;
+	uint64_t routerAddr;
+	//uint32_t    softVersion;
+	//uint32_t    channelMask;
+	uint16_t panId;
+	uint8_t workingChannel;
+	uint16_t parentShortAddr;
+	uint8_t lqi;
+	int8_t rssi;
+	uint8_t ackByte;
+
+	int32_t battery;
+	int32_t temperature;
+
+	uint8_t cs;
+
+} app_msg_t;
 
 
 #endif /* WAN_MSG_H_ */

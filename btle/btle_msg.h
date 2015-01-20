@@ -24,28 +24,6 @@ typedef struct {
 
 } btle_msg_t;
 
-typedef struct PACK app_msg_t {
-	uint8_t messageType;
-	uint8_t nodeType;
-	uint64_t extAddr;
-	uint16_t shortAddr;
-	uint64_t routerAddr;
-	//uint32_t    softVersion;
-	//uint32_t    channelMask;
-	uint16_t panId;
-	uint8_t workingChannel;
-	uint16_t parentShortAddr;
-	uint8_t lqi;
-	int8_t rssi;
-	uint8_t ackByte;
-
-	int32_t battery;
-	int32_t temperature;
-
-	uint8_t cs;
-
-} app_msg_t;
-
 typedef struct {
 	uint8_t command;
 	uint16_t pan_id;

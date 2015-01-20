@@ -221,7 +221,7 @@ END GROUP
  .progmem.data.BTLE_hex
                 0x000000b8       0x11 ./usart/usart_btle.o
                 0x000000b8                BTLE_hex
- .progmem.data.__c.2276
+ .progmem.data.__c.2260
                 0x000000c9       0x23 ./btle/btle_driver.o
                 0x000000ec                . = ALIGN (0x2)
  *(.jumptables)

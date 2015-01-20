@@ -9,6 +9,7 @@
 #define WAN_H_
 
 #include "wan_msg.h"
+#include"../btle/btle_msg.h"
 //#include "../queue/queue.h"
 // btle parsing results
 enum wan_parse_result {
@@ -32,5 +33,6 @@ queue_results_t wan_enqueue(wan_msg_t *msg);
 void wan_set_cts();//pd5 output and low
 uint8_t wan_get_rts();//pd4 input
 void frame_tick();
+void build_app_msg(btle_msg_t *btle_msg, app_msg_t *msg);
 
 #endif /* WAN_H_ */

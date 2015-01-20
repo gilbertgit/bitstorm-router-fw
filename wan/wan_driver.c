@@ -34,10 +34,10 @@ int wan_line_index = 0;
 static void init_buffer();
 static void init_lines();
 static bool handle_data();
-static uint8_t parse_data(char *token, char **out);
+//static uint8_t parse_data(char *token, char **out);
 
-static uint8_t wan_parse_nybble(char c);
-static wan_msg_t wan_handle_packet(char * buffer);
+//static uint8_t wan_parse_nybble(char c);
+//static wan_msg_t wan_handle_packet(char * buffer);
 
 void wan_driver_init()
 {
@@ -93,35 +93,35 @@ bool handle_data()
 	return false;
 }
 
-static uint8_t parse_data(char *token, char **out)
-{
-	uint8_t *ptr = NULL;
-	// TODO: review warning
-	if ((ptr == strstr(wan_lines, token)))
-	{
-		if (out != NULL )
-			*out = ptr;
-		return WAN_TKFOUND;
-	} else
-		return WAN_TKNOTFOUND;
-}
+//static uint8_t parse_data(char *token, char **out)
+//{
+//	uint8_t *ptr = NULL;
+//	// TODO: review warning
+//	if ((ptr == strstr(wan_lines, token)))
+//	{
+//		if (out != NULL )
+//			*out = ptr;
+//		return WAN_TKFOUND;
+//	} else
+//		return WAN_TKNOTFOUND;
+//}
 
-wan_msg_t wan_handle_packet(char * buffer)
-{
-	wan_msg_t wan_msg;
-
-	return wan_msg;
-
-}
-
-uint8_t wan_parse_nybble(char c)
-{
-	if (c >= 'A' && c <= 'F')
-		c = c | 0x20;
-	for (uint8_t i = 0; i < 16; i++)
-	{
-		if (WAN_HEX_DIGITS[i] == c)
-			return i;
-	}
-	return 0x80;
-}
+//wan_msg_t wan_handle_packet(char * buffer)
+//{
+//	wan_msg_t wan_msg;
+//
+//	return wan_msg;
+//
+//}
+//
+//uint8_t wan_parse_nybble(char c)
+//{
+//	if (c >= 'A' && c <= 'F')
+//		c = c | 0x20;
+//	for (uint8_t i = 0; i < 16; i++)
+//	{
+//		if (WAN_HEX_DIGITS[i] == c)
+//			return i;
+//	}
+//	return 0x80;
+//}
