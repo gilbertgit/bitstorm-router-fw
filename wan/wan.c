@@ -18,6 +18,7 @@
 #include "wan_msg.h"
 #include "wan_driver.h"
 #include "wan_config.h"
+#include "../util/clock.h"
 #include "../queue/circular_queue.h"
 #include "../btle/btle.h"
 #include "../btle/btle_msg.h"
@@ -36,6 +37,8 @@ bool frame_ready = false;
 static uint8_t frame_buff[80];
 static int frame_index = 0;
 static int frame_length = 0;
+static clock_time_t prev_millis;
+
 enum states {
 	CONFIGURE, WAIT_FOR_DATA, WAIT_FOR_NWK_BUSY, WAIT_FOR_NWK_READY
 };
@@ -118,12 +121,15 @@ void wan_state_wait_for_data(void) {
 				frame[frame_index++] = ((uint8_t *) (&app_msg))[i];
 			}
 			// checksum
-			frame[frame_index++] = 0xFF;
+			uint8_t cs = 0;
+			for (int i = 0; i < frame_index; cs ^= frame[i++]);
+			frame[frame_index++] = cs;
 
-				// push out the lw-mesh radio
+			// push out the lw-mesh radio
 			wan_usart_transmit_bytes((char*) frame, frame_index);
 
 			state = WAIT_FOR_NWK_BUSY;
+			prev_millis = clock_time();
 			LED_ON
 		}
 	}
@@ -148,6 +154,8 @@ void frame_tick() {
 
 void wan_tick() {
 
+	clock_time_t elapsed;
+
 	frame_tick();
 
 	switch (state) {
@@ -158,15 +166,29 @@ void wan_tick() {
 		wan_state_wait_for_data();
 		break;
 	case WAIT_FOR_NWK_BUSY:
-		//REVIEW: Do wee need to monitor for hung status?
-		if (NWK_BUSY)
+		if (NWK_BUSY) {
 			state = WAIT_FOR_NWK_READY;
+			prev_millis = clock_time();
+		} else {
+			// Don't wait around forever - perhaps the RF sent quickly and we missed the bounce
+			elapsed = clock_time() - prev_millis;
+			if (elapsed >= WAN_NWK_BUSY_TIMEOUT) {
+				state = WAIT_FOR_NWK_READY;
+				prev_millis = clock_time();
+			}
+		}
 		break;
 	case WAIT_FOR_NWK_READY:
-		//REVIEW: Do wee need to monitor for hung status?
-		if (NWK_READY){
+		if (NWK_READY) {
 			state = WAIT_FOR_DATA;
 			LED_OFF
+		} else {
+			// Don't wait forever - although, if it never goes to READY, there's not much we can do...
+			elapsed = clock_time() - prev_millis;
+			if (elapsed >= WAN_NWK_READY_TIMEOUT) {
+				state = WAIT_FOR_DATA;
+				LED_OFF
+			}
 		}
 		break;
 	}
@@ -191,8 +213,12 @@ void build_app_msg(btle_msg_t *btle_msg, app_msg_t *msg) {
 	msg->temperature = btle_msg->temp;
 
 	// Calculate CS
-	msg->cs = 0;
-	for (int i=0; i < sizeof(app_msg_t)-1; msg->cs ^= ((uint8_t*)msg)[i++]) ;
+	//msg->cs = 0;
+	//for (int i = 0; i < sizeof(app_msg_t) - 1; msg->cs ^= ((uint8_t*) msg)[i++])
+	//	;
+
+	// ACTUALLY, don't calculate the CS, let the frame cs do the trick
+	msg->cs = 0xCC;
 }
 
 queue_results_t wan_enqueue(wan_msg_t *msg) {

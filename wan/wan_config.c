@@ -43,7 +43,9 @@ void wan_get_device_address()
 		frame[frame_index++] = ((uint8_t *) (&cmd_header))[i];
 	}
 	// checksum
-	frame[frame_index++] = 0xFF;
+	uint8_t cs = 0;
+	for (int i = 0; i < frame_index; cs ^= frame[i++]);
+	frame[frame_index++] = cs;
 
 	wan_usart_transmit_bytes((char*) frame, frame_index);
 }
@@ -67,7 +69,9 @@ void wan_config_network()
 		frame[frame_index++] = ((uint8_t *) (&config_ntw))[i];
 	}
 	// checksum
-	frame[frame_index++] = 0xFF;
+	uint8_t cs = 0;
+	for (int i = 0; i < frame_index; cs ^= frame[i++]);
+	frame[frame_index++] = cs;
 
 	wan_usart_transmit_bytes((char*) frame, frame_index);
 }

@@ -24,6 +24,11 @@ enum wan_parse_result {
 #define WAN_TKEND		'\n'
 #define WAN_MSG_QUEUE_SIZE			MSG_SIZE * 128
 
+// Shouldn't take too long to recognize a BUSY signal
+#define WAN_NWK_BUSY_TIMEOUT	100
+
+// For ACK'd messages, it can take up to 3 full seconds
+#define WAN_NWK_READY_TIMEOUT	4000
 
 extern queue_t wan_queue;
 
